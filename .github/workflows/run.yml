@@ -24,10 +24,8 @@ jobs:
       run: cf rs ${{ secrets.CFNAME }}
       
     - name: Notify To Telegram
-      env:
-          GITHUB_CONTEXT: ${{ toJson(env) }}
       run: |
         echo "$GITHUB_CONTEXT"
         curl -s -o /dev/null -X POST https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage \
         -H "Content-Type: application/json" \
-        --data '{"text": ${GITHUB_WORKFLOW}+"完成！","chat_id": "${{ secrets.TG_USER_ID }}"}'
+        --data '{"text": ${GITHUB_WORKFLOW},"chat_id": "${{ secrets.TG_USER_ID }}"}'
