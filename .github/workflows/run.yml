@@ -25,6 +25,6 @@ jobs:
       
     - name: Notify To Telegram
       run: |
-        curl -s -o -X POST https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage \
+        curl -s -o /dev/null -X POST https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage \
         -H "Content-Type: application/json" \
         --data '{"text": "IBM重启完成","chat_id": "${{ secrets.TG_USER_ID }}"}'
